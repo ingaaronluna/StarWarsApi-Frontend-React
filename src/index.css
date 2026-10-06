@@ -1,0 +1,146 @@
+:root {
+  --bg: #0a0d12;
+  --panel: #121720;
+  --panel-raised: #171d29;
+  --line: #2a3344;
+  --amber: #ffb224;
+  --amber-dim: #8a6218;
+  --cyan: #5fd4e8;
+  --cyan-dim: #2d6975;
+  --red: #e2483f;
+  --text: #e9e6dd;
+  --text-dim: #8d94a3;
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-readout: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255,178,36,0.06), transparent),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+}
+
+a { color: var(--cyan); }
+::selection { background: var(--amber-dim); color: var(--bg); }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 24px 96px; }
+
+/* Barra de conexión */
+.connbar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(10,13,18,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+
+.connbar-inner {
+  max-width: 920px; margin: 0 auto; padding: 12px 24px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-family: var(--font-readout); font-size: 13px;
+}
+
+.connbar label { color: var(--text-dim); }
+
+.connbar input {
+  background: var(--panel); border: 1px solid var(--line); color: var(--text);
+  font-family: var(--font-readout); font-size: 13px;
+  padding: 7px 10px; border-radius: 3px; width: 230px;
+}
+
+.btn {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.02em;
+  background: transparent; border: 1px solid var(--amber-dim); color: var(--amber);
+  padding: 7px 16px; border-radius: 3px; cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.btn:hover { border-color: var(--amber); background: rgba(255,178,36,0.08); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-cyan { border-color: var(--cyan-dim); color: var(--cyan); }
+.btn-cyan:hover { border-color: var(--cyan); background: rgba(95,212,232,0.08); }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-dim); display: inline-block; margin-right: 6px; }
+.status-dot.ok { background: #4fd37a; box-shadow: 0 0 6px #4fd37a; }
+.status-dot.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
+.status-text { color: var(--text-dim); }
+
+/* Hero */
+.hero { padding: 56px 0 36px; border-bottom: 1px solid var(--line); }
+.hero-eyebrow { font-family: var(--font-readout); font-size: 12px; color: var(--cyan); margin: 0 0 10px; }
+.hero h1 { font-family: var(--font-display); font-weight: 700; font-size: 44px; line-height: 1.05; margin: 0 0 14px; color: var(--amber); }
+.hero p { max-width: 58ch; color: var(--text-dim); font-size: 16px; line-height: 1.6; margin: 0; }
+
+/* Secciones de nivel */
+.nivel { padding: 44px 0; border-bottom: 1px solid var(--line); }
+.nivel-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.nivel-index {
+  font-family: var(--font-readout); font-size: 13px; color: var(--amber-dim);
+  border: 1px solid var(--amber-dim); border-radius: 3px; padding: 2px 7px;
+}
+.nivel h2 { font-family: var(--font-display); font-weight: 600; font-size: 24px; margin: 0; color: var(--text); }
+.nivel-endpoint { font-family: var(--font-readout); font-size: 12.5px; color: var(--cyan); margin: 0 0 20px; }
+.nivel-desc { color: var(--text-dim); font-size: 14.5px; margin: 0 0 22px; max-width: 62ch; line-height: 1.55; }
+
+/* Nivel 1 */
+.grid-personajes { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px; }
+.ficha-mini {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+  padding: 10px 8px 12px; text-align: center; cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.ficha-mini:hover { border-color: var(--cyan-dim); transform: translateY(-2px); }
+.ficha-mini.activa { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber); }
+.ficha-mini img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 8px; border: 2px solid var(--line); background: var(--panel-raised); }
+.ficha-mini .nombre { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--text); line-height: 1.2; }
+.faccion-tag { display: inline-block; font-family: var(--font-readout); font-size: 10px; margin-top: 5px; padding: 1px 6px; border-radius: 2px; background: rgba(141,148,163,0.12); color: var(--text-dim); }
+.faccion-tag.rebelde { background: rgba(95,212,232,0.12); color: var(--cyan); }
+.faccion-tag.imperio, .faccion-tag.sith { background: rgba(226,72,63,0.12); color: var(--red); }
+.faccion-tag.jedi { background: rgba(255,178,36,0.12); color: var(--amber); }
+
+/* Nivel 2 */
+.ficha-combate { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; display: flex; gap: 24px; padding: 24px; flex-wrap: wrap; }
+.ficha-combate img { width: 120px; height: 120px; border-radius: 8px; object-fit: cover; border: 2px solid var(--amber-dim); background: var(--panel-raised); }
+.ficha-combate .datos { flex: 1; min-width: 220px; }
+.ficha-combate h3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0 0 4px; color: var(--amber); }
+.ficha-combate .sub { color: var(--text-dim); font-size: 13.5px; margin: 0 0 16px; }
+.stat-row { margin-bottom: 10px; }
+.stat-label { display: flex; justify-content: space-between; font-family: var(--font-readout); font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
+.stat-bar-track { height: 6px; background: var(--panel-raised); border-radius: 3px; overflow: hidden; }
+.stat-bar-fill { height: 100%; border-radius: 3px; background: var(--amber); transition: width 0.5s ease; }
+.stat-bar-fill.peligro { background: var(--red); }
+.ficha-combate .extra { margin-top: 14px; font-size: 13.5px; color: var(--text); line-height: 1.6; }
+.ficha-combate .extra b { color: var(--text-dim); font-weight: 500; }
+
+.placeholder { color: var(--text-dim); font-size: 14px; padding: 20px 0; }
+
+/* Nivel 3 */
+.simulador { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 24px; }
+.simulador select {
+  background: var(--panel-raised); border: 1px solid var(--line); color: var(--text);
+  font-family: var(--font-body); font-size: 14px; padding: 9px 12px; border-radius: 4px;
+  width: 100%; max-width: 420px;
+}
+.participantes-row { display: flex; gap: 10px; margin: 18px 0; flex-wrap: wrap; }
+.participante-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line); background: var(--panel-raised); transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.participante-avatar.ganador { border-color: var(--amber); box-shadow: 0 0 10px rgba(255,178,36,0.6); }
+.readout {
+  margin-top: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+  padding: 14px 16px; font-family: var(--font-readout); font-size: 13px; color: var(--cyan);
+  line-height: 1.7; min-height: 22px; white-space: pre-wrap;
+}
+.readout .ok { color: #4fd37a; }
+.readout .err { color: var(--red); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (max-width: 560px) { .hero h1 { font-size: 32px; } .ficha-combate { flex-direction: column; } }
